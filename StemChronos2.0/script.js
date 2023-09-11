@@ -40,7 +40,7 @@ async function GetData() {
 				const Remianing = document.getElementById("TimeRemaining");
 				var table = document.getElementById("Schedule");
 				AddNewHeader(table);
-				document.getElementById("LetterDay").innerHTML = json[0].letterDay + " day"
+				document.getElementById("LetterDay").innerHTML = json[0].letterDay 
 				for (var tempIndex = 0; tempIndex < length; tempIndex++) {
 					
 					var currentPeriod = false;
