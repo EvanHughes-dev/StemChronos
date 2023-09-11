@@ -1,6 +1,8 @@
 
 
 const BaseUrl = 'http://69.242.41.167:8082';
+
+var AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
 async function GetData() {
 	var userYear = localStorage.getItem("Year");
 	if (userYear ==null) {
@@ -14,6 +16,8 @@ async function GetData() {
 		
 		GetData();
 	});
+
+	
 	try {
 
 		await fetch(BaseUrl + "/api/Schedule/" + localStorage.getItem("Year"), {
@@ -27,8 +31,8 @@ async function GetData() {
 				const d = new Date();
 				let hour = d.getHours();
 				let minutes = d.getMinutes();
-
-				
+			
+				SetDateAndTime();
 				
 				var length = json[0].classOrder.length;
 				
@@ -40,7 +44,10 @@ async function GetData() {
 				const Remianing = document.getElementById("TimeRemaining");
 				var table = document.getElementById("Schedule");
 				AddNewHeader(table);
-				document.getElementById("LetterDay").innerHTML = json[0].letterDay 
+				
+				document.getElementById("LetterDay").innerHTML = json[0].letterDay;
+			
+				var foundCurrentPeriod=false;
 				for (var tempIndex = 0; tempIndex < length; tempIndex++) {
 					
 					var currentPeriod = false;
@@ -57,71 +64,91 @@ async function GetData() {
 					if (tempIndex == length - 1) {
 						lastHour = endHour;
 						lastMinute = endMinute;
+						lastHour += 12;//remove this later
 					}
+					if (tempIndex == length - 1) {
+						
+						startHour = 13;
+						endHour = 14;
+						startMinute = 1
+						endMinute = 40;
+					}//remove this if statement
 					
 					var hoursLeft;
 					var minutesLeft;
-					if (hour >= startHour && hour <= endHour) {
+					if (hour >= startHour && hour <= endHour &&!foundCurrentPeriod) {
 						if (hour == endHour && hour == startHour) {
 							if (minutes < endMinute && minutes >= startMinute) {
-								console.log("In range test 0")
+								//console.log("In range test 0")
 								currentPeriod = true;
 							}
 						}
 						else if (hour == endHour && minutes < endMinute) {//if the hour is just equal to the end hour
-							console.log("In range test 1")
+							
 							currentPeriod = true;
+							//console.log("ran3")
 						}
 						else if (hour == startHour && minutes >= startMinute) {
-							console.log("In range test 2")
+							//console.log("ran2")
 							currentPeriod = true;
 						} else if (hour != startHour && hour != endHour) {
 							currentPeriod = true;
+						//	console.log("ran1")
 						}
-						hoursLeft = endHour - hour;
-						minutesLeft = endMinute - minutes;
-						console.log(hoursLeft + " " + minutes);
+						if (currentPeriod) {
 
-						if (minutesLeft<0) {
-							hoursLeft -= 1;
-							minutesLeft += 60;
-						}
-						Remianing.innerHTML = "There is "
-						
-						 if (hoursLeft == 1) {
-							 Remianing.innerHTML += hoursLeft + " hour ";
-						} else if (hoursLeft>1) {
-							 Remianing.innerHTML += hoursLeft + " hour ";
-						}
 
-						if (minutes > 1 || minutes == 0) {
-							Remianing.innerHTML += minutesLeft + " minutes left in";
-						} else {
-							Remianing.innerHTML += minutesLeft + " minute left in";
+							hoursLeft = endHour - hour;
+							minutesLeft = endMinute - minutes;
+
+
+							if (minutesLeft < 0) {
+								hoursLeft -= 1;
+								minutesLeft += 60;
+							}
+							Remianing.innerHTML = "There is "
+
+							if (hoursLeft == 1) {
+								Remianing.innerHTML += hoursLeft + " hour ";
+							} else if (hoursLeft > 1) {
+								Remianing.innerHTML += hoursLeft + " hour ";
+							}
+
+							if (minutes > 1 || minutes == 0) {
+								Remianing.innerHTML += minutesLeft + " minutes left in";
+							} else {
+								Remianing.innerHTML += minutesLeft + " minute left in";
+							}
+							if (json[0].classOrder[tempIndex] != "Advisory" || json[0].classOrder[tempIndex] != "Seminar" || json[0].classOrder[tempIndex] != "Lunch") {
+								Remianing.innerHTML += " " + json[0].classOrder[tempIndex] + " Period"
+							} else {
+								Remianing.innerHTML += " " + json[0].classOrder[tempIndex]
+
+							}
 						}
-						if (json[0].classOrder[tempIndex] != "Advisory" || json[0].classOrder[tempIndex] != "Seminar" || json[0].classOrder[tempIndex] != "Lunch") {
-							Remianing.innerHTML += " " + json[0].classOrder[tempIndex] + " Period"
-						} else {
-							Remianing.innerHTML += " " + json[0].classOrder[tempIndex]
-						}
-					}
+					}//end of within range
 					let tr = document.createElement('tr');
 					let TitleTR = document.createElement('td');
+					
 					TitleTR.innerHTML = json[0].classOrder[tempIndex];
 					let TimeTR = document.createElement('td');
 					TimeTR.innerHTML = json[0].startTime[tempIndex].slice(0, 5) + "-" + json[0].endTime[tempIndex].slice(0, 5);
+					if (tempIndex == length - 1) {
+						TimeTR.innerHTML = "13:01-14:40"
+					}//remove this if statement
 					if (currentPeriod) {
-						let Current = document.createElement('td');
-						Current.innerHTML = "Current"
+						
+						TitleTR.classList.add("CurrentPeriod");
+						TimeTR.classList.add("CurrentPeriod");
+						
 						//TitleTR.classList.add("CurrentPeriod");
 						//TimeTR.classList.add("CurrentPeriod");
-						tr.appendChild(TitleTR);
-						tr.appendChild(TimeTR);
-						tr.appendChild(Current);
-					} else {
-						tr.appendChild(TitleTR);
-						tr.appendChild(TimeTR);
-					}
+						
+					
+					} 
+					
+					tr.appendChild(TitleTR);
+					tr.appendChild(TimeTR);
 					
 					table.appendChild(tr);
 					
@@ -143,9 +170,10 @@ async function GetData() {
 						}
 
 					}
-
+				
 				} else if (hour > lastHour || hour == lastHour && minutes > lastMinute) {
 					Remianing.innerHTML = "Schools over!"
+					
 				} 
 			})
 			.catch(error => {
@@ -169,5 +197,25 @@ function AddNewHeader(table) {
 	trObject.appendChild(period);
 	trObject.appendChild(time);
 	table.appendChild(trObject)
+
+}
+
+function SetDateAndTime() {
+
+	const d = new Date();
+	let hour = d.getHours();
+	let minutes = d.getMinutes();
+
+	let month = d.getMonth();
+	let day = d.getDate();
+	let year = d.getFullYear();
+
+	document.getElementById("CurrentDate").innerHTML = AllMonths[month] + " " + day + ", " +year
+
+	if (minutes < 10) {
+		document.getElementById("CurrentTime").innerHTML = hour + ":0" + minutes
+	} else {
+		document.getElementById("CurrentTime").innerHTML = hour + ":" + minutes
+	}
 
 }

@@ -7,15 +7,56 @@
 
 </head>
 <body>
-    <div  class="LetterDay">
-        <center>
-            <div id="LetterDay"></div>
 
-            <div>Day</div>
-        </center>
+    <div name="Header" class="ChronosHeader">
+        <div class="CurrentTimeHolder">
+            <div class="CurrentTime" id="CurrentTime"></div>
+            <div class="CurrentTime" id="CurrentDate"></div>
+        </div>
+        <div class="ChronosNameHolder">
+            <div class="ChronosName">STEM Chronos</div>
+        </div>
+
+
     </div>
-    <div class="Time Remaining" id="TimeRemaining"></div>
-    <select id="GradeLevel" >
+    <div class="flex-container">
+
+        
+        
+        <div class="flex-child magenta">
+            <div class="LetterDay">
+                <div class="LetterDayInside">
+                    <center>
+                        <div id="LetterDay" class="LetterDayText"></div>
+
+                        <div>Day</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-child green">
+            <div class="DailyMessage">
+                <div class="DailyMessageText">Daily Message Here</div>
+                
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="DailyMessageAndLetterDay">
+       
+    </div>
+    <div class="TimeRemainingHolder">
+        <hr>
+        <center>
+            <div class="TimeRemaining" id="TimeRemaining"></div>
+        </center>
+        <hr>
+    </div>
+    <select id="GradeLevel">
         <option value="FRE">Freshman/Sophomore</option>
         <option value="SEN">Junior/Senior</option>
 
@@ -27,7 +68,6 @@
 
         </tr>
     </table>
-
 
 </body>
 <script src="script.js"></script>
