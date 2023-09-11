@@ -1,0 +1,14 @@
+{
+    "name": "STEM Chronos 2.0",
+    "version": "1.0.0",
+    "description": "New Verions of STEM Chronos (Still under development)",
+    "manifest_version": 3,
+    "author": "Evan Hughes",
+
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "STEM Chronos 2.0"
+    }
+    
+
+}
