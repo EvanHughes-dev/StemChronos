@@ -2,7 +2,7 @@
 
 const BaseUrl = 'http://69.242.41.167:8082';
 
-var AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
+const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
 async function GetData() {
 	var userYear = localStorage.getItem("Year");
 	if (userYear ==null) {
@@ -61,18 +61,7 @@ async function GetData() {
 						firstHour = startHour;
 						firstMinute = startMinute;
 					}
-					if (tempIndex == length - 1) {
-						lastHour = endHour;
-						lastMinute = endMinute;
-						lastHour += 12;//remove this later
-					}
-					if (tempIndex == length - 1) {
-						
-						startHour = 13;
-						endHour = 14;
-						startMinute = 1
-						endMinute = 40;
-					}//remove this if statement
+					
 					
 					var hoursLeft;
 					var minutesLeft;
@@ -133,9 +122,7 @@ async function GetData() {
 					TitleTR.innerHTML = json[0].classOrder[tempIndex];
 					let TimeTR = document.createElement('td');
 					TimeTR.innerHTML = json[0].startTime[tempIndex].slice(0, 5) + "-" + json[0].endTime[tempIndex].slice(0, 5);
-					if (tempIndex == length - 1) {
-						TimeTR.innerHTML = "13:01-14:40"
-					}//remove this if statement
+					
 					if (currentPeriod) {
 						
 						TitleTR.classList.add("CurrentPeriod");

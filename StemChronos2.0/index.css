@@ -5,7 +5,8 @@ body{
 #Schedule {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
+    margin:3px;
 }
 
     #Schedule td, #Schedule th {
