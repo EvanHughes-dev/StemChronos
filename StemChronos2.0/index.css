@@ -1,17 +1,19 @@
-body{
-    width:300px;
-    border:solid;
+body {
+    width: 300px;
+   
+    background-color: #Eeeef3;
 }
 #Schedule {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 90%;
     margin:3px;
+    margin-top:7px;
 }
 
     #Schedule td, #Schedule th {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 1px;
     }
 
     #Schedule tr:nth-child(even) {
@@ -23,8 +25,8 @@ body{
     }
 
     #Schedule th {
-        padding-top: 12px;
-        padding-bottom: 12px;
+        padding-top: 7px;
+        padding-bottom: 7px;
         text-align: left;
         background-color: #1d21b9;
         color: white;
@@ -46,22 +48,28 @@ body{
     margin-left: 10px;
 }
 
-.DropDown{
+select.DropDown{
     margin-left:2px;
     width:90%;
 }
 
-.DailyMessage {
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
-    border-bottom: solid 1px gray;
-    border-left: solid 1px gray;
-    border-radius: 0px 0px 0px 7px;
-    display:block;
-}
+    select.DropDown option:checked {
+        background-color: #92cbdf;
+    }
+   
+
+
+    .DailyMessage {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+        border-bottom: solid 1px gray;
+        border-left: solid 1px gray;
+        border-radius: 0px 0px 0px 7px;
+        display: block;
+    }
 .DailyMessageText {
     margin-top: 10px;
     text-align: center;
@@ -112,11 +120,12 @@ body{
     font-size: 30px;
     color: white;
     vertical-align: top;
+    padding-left:5px;
 }
 
 .CurrentTimeHolder {
-    margin-right:3px;
-    margin-top:3px;
+    margin-right:5px;
+    margin-top:5px;
 }
 
 .CurrentTime {
@@ -150,3 +159,41 @@ body{
        
        
     } 
+
+.Footer{
+    height:10%;
+    bottom:0px;
+    width:95%;
+    
+    display:block;
+    margin-top:10px;
+}
+#FooterTable{
+    width:100%;
+}
+
+    #FooterTable th{
+        width:50%;
+        font-size:25px;
+        
+    }
+
+
+.SettingBtn {
+    color: #6f7273;
+    width: 50%;
+    text-decoration: none;
+}
+.SettingBtn:hover{
+    cursor:grab;
+}
+
+.ReportBtn {
+    color: #6f7273;
+    width: 50%;
+    text-decoration:none;
+}
+
+    .ReportBtn:hover {
+        cursor: grab;
+    }
