@@ -108,7 +108,8 @@ async function GetData() {
 							} else {
 								Remianing.innerHTML += minutesLeft + " minute left in";
 							}
-							if (json[0].classOrder[tempIndex] != "Advisory" || json[0].classOrder[tempIndex] != "Seminar" || json[0].classOrder[tempIndex] != "Lunch") {
+							console.log(json[0].classOrder[tempIndex].replace(/\s+/g, ''));
+							if (json[0].classOrder[tempIndex].replace(/\s+/g, '') != "Advisory" && json[0].classOrder[tempIndex].replace(/\s+/g, '') != "Seminar" && json[0].classOrder[tempIndex].replace(/\s+/g, '') != "Lunch" && json[0].classOrder[tempIndex].replace(/\s+/g, '') != "L&L") {
 								Remianing.innerHTML += " " + json[0].classOrder[tempIndex] + " Period"
 							} else {
 								Remianing.innerHTML += " " + json[0].classOrder[tempIndex]
