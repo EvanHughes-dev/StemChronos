@@ -3,8 +3,11 @@
 <head>
     <title>Stem Chronos</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="index.css">
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'; script-src-elem 'self'">
+    <script src="FirebaseInfo/Firebase.js"></script>
 
+    <script src="FirebaseInfo/FireStore.js"></script>
 </head>
 <body>
 
@@ -21,27 +24,30 @@
     </div>
     <div class="flex-container">
 
-        
-        
+
+
         <div class="flex-child magenta">
-            
-                <div class="LetterDay">
-                    <div class="LetterDayInside">
-                        <center>
+
+            <div class="LetterDay">
+                <div class="LetterDayInside">
+                    <img id="WeekendImage" style="width: 100%; display: none;" src="Images/Weekend.png" alt="Sun">
+                    <center>
+                        <div id="LetterDayParent">
                             <div id="LetterDay" class="LetterDayText"></div>
 
                             <div>Day</div>
-                        </center>
-                    </div>
+                        </div>
+                    </center>
                 </div>
-            
+            </div>
+
         </div>
 
         <div class="flex-child green">
             <div class="DailyMessage">
                 <div class="DailyMessageHeader" id="DailyMessageHeader">Welcome Back</div>
-                <div class="DailyMessageText"> </div>
-                
+                <div id="DailyMessageText" class="DailyMessageText"> </div>
+
 
             </div>
         </div>
@@ -49,7 +55,7 @@
     </div>
 
 
-    
+
     <div class="TimeRemainingHolder">
         <hr>
         <center>
@@ -59,8 +65,8 @@
     </div>
     <center>
         <select id="GradeLevel" class="DropDown">
-            <option value="FRE">Freshman/Sophomore</option>
-            <option value="SEN">Junior/Senior</option>
+            <option value="Fresh">Freshman/Sophomore</option>
+            <option value="Sen">Junior/Senior</option>
 
         </select>
     </center>
@@ -76,17 +82,20 @@
     <center>
         <div class="Footer">
             <hr>
-           <table id="FooterTable">
-               <tr>
-                   <th><center><div class="SettingBtn">&#9881;</div></center></th>
-                    <th><center><a target="_blank" href ="https://docs.google.com/forms/d/e/1FAIpQLScYBpcFebNrtlOQNqUPPra11Su7ahL8FZnoUmapd6ov55_PQQ/viewform?usp=sf_link" class="ReportBtn">&#9872;</a></center></th>
-               </tr>
-           </table>
-        
+            <table id="FooterTable">
+                <tr>
+                    <th><center><div class="SettingBtn">&#9881;</div></center></th>
+                    <th><center><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScYBpcFebNrtlOQNqUPPra11Su7ahL8FZnoUmapd6ov55_PQQ/viewform?usp=sf_link" class="ReportBtn">&#9872;</a></center></th>
+                </tr>
+            </table>
+
         </div>
 
 
     </center>
+
+
 </body>
 <script src="script.js"></script>
+
 </html>
