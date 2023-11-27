@@ -15,7 +15,6 @@ const DayOfWeek = d.getDay();
 const DailyMessageOBJ = document.getElementById('DailyMessageText');
 const DailyMessageHEADER = document.getElementById('DailyMessageHeader');
 
-
 const DaysOfWeekAbrv = ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat']
 const DaysOfWeekFull = ['Sunday', 'Monday', 'Tuesday',  'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
@@ -23,7 +22,6 @@ const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July"
 const LetterDayOBJ = document.getElementById('LetterDayParent');
 const WeekendImageOBJ = document.getElementById('WeekendImage');
 const Remianing = document.getElementById("TimeRemaining");
-
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBL9jpJTz-eCYJM0r1etRbx_6YpPqa67_4",
@@ -81,10 +79,6 @@ function GetData() {
 	}
 	);
 }
-
-
-
-
 
 async function SetSchedule(Schedule) {
 	
@@ -189,7 +183,6 @@ async function SetSchedule(Schedule) {
 	}
 }
 
-
 function AddNewHeader(table) {
 	table.innerHTML = "";
 
@@ -203,6 +196,7 @@ function AddNewHeader(table) {
 	table.appendChild(trObject)
 
 }
+
 function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 	let tr = document.createElement('tr');
 				let TitleTR = document.createElement('td');
@@ -222,7 +216,6 @@ function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 
 				table.appendChild(tr);
 }
-
 
 function TimeLeft(hoursLeft, minutesLeft, minutes) {
 
@@ -251,6 +244,7 @@ function TimeLeft(hoursLeft, minutesLeft, minutes) {
 
 	}
 }
+
 function SetDateAndTime() {
 
 	const d = new Date();
