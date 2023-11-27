@@ -84,11 +84,11 @@ async function SetSchedule(Schedule) {
 	
 	let hour = d.getHours();
 	let minutes = d.getMinutes();
-	var LetterDay = Schedule[DaysOfWeekAbrv[DayOfWeek - 1] + "Letter"]
+	var LetterDay = Schedule[DaysOfWeekAbrv[DayOfWeek] + "Letter"]
 	if (LetterDay=="X") {
 		return;
     }
-
+	console.log(Schedule);
 
 	var PeriodNames = [];
 	var PeriodTimes = [];
@@ -148,7 +148,7 @@ async function SetSchedule(Schedule) {
 
 						hoursLeft = endHour - hour;
 						minutesLeft = endMinute - minutes;
-						TimeLeft(hoursLeft, minutesLeft, minutes);
+						TimeLeft(hoursLeft, minutesLeft, minutes, PeriodName);
 					}
 				}//end of within range
 				AddNewElement(table, PeriodName, PeriodTimes[i], currentPeriod)
@@ -217,7 +217,7 @@ function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 				table.appendChild(tr);
 }
 
-function TimeLeft(hoursLeft, minutesLeft, minutes) {
+function TimeLeft(hoursLeft, minutesLeft, minutes, PeriodName) {
 
 	if (minutesLeft < 0) {
 		hoursLeft -= 1;
