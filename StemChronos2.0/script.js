@@ -2,6 +2,8 @@
 
 // Import the functions you need from the SDKs you need
 
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,31 +22,36 @@ const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July"
 
 const LetterDayOBJ = document.getElementById('LetterDayParent');
 const WeekendImageOBJ = document.getElementById('WeekendImage');
+const Remianing = document.getElementById("TimeRemaining");
+
+
+const firebaseConfig = {
+	apiKey: "AIzaSyBL9jpJTz-eCYJM0r1etRbx_6YpPqa67_4",
+	authDomain: "chronos-96d4f.firebaseapp.com",
+	databaseURL: "https://chronos-96d4f.firebaseio.com",
+	projectId: "chronos-96d4f",
+	storageBucket: "chronos-96d4f.appspot.com",
+	messagingSenderId: "866705537581",
+	appId: "1:866705537581:web:5ba4523272685649c116a4",
+	measurementId: "G-RK77WZHGE9"
+};
 
 function GetData() {
-	
+	SetDateAndTime();
 	if (DayOfWeek == 0 || DayOfWeek == 6) {
 		DailyMessageHEADER.innerHTML = "Enjoy your " + DaysOfWeekFull[DayOfWeek];
 		LetterDayOBJ.style.display = 'none';
 		WeekendImageOBJ.style.display = 'revert';
-		return
+		
     }
 
-	const firebaseConfig = {
-		apiKey: "AIzaSyBL9jpJTz-eCYJM0r1etRbx_6YpPqa67_4",
-		authDomain: "chronos-96d4f.firebaseapp.com",
-		databaseURL: "https://chronos-96d4f.firebaseio.com",
-		projectId: "chronos-96d4f",
-		storageBucket: "chronos-96d4f.appspot.com",
-		messagingSenderId: "866705537581",
-		appId: "1:866705537581:web:5ba4523272685649c116a4",
-		measurementId: "G-RK77WZHGE9"
-	};
 
 	// Initialize Firebase
 	const app = firebase.initializeApp(firebaseConfig);
-
 	const db = firebase.firestore(app);
+	const settings = {timestampsInSnapshots: true };
+	db.settings(settings);
+	
 
 	var userYear = localStorage.getItem("Year");
 	if (userYear == null) {
@@ -64,17 +71,18 @@ function GetData() {
 	//const docRef = firebase.doc();
 	db.collection("Schedule").doc(userYear.toString()).get().then(docSnap => {
 		if (docSnap.exists) {
-			console.log("Document data:", docSnap.data());
+		
 			SetSchedule(docSnap.data());
 		} else {
 			// docSnap.data() will be undefined in this case
 			console.log("No such document!");
+			
 		}
 	}
 	);
 }
 
-GetData();
+
 
 
 
@@ -92,38 +100,22 @@ async function SetSchedule(Schedule) {
 	var PeriodTimes = [];
 
 	try {
-
-	
-			
-		
-			
-		SetDateAndTime();
-		
-		
 		PeriodNames = Schedule[DaysOfWeekAbrv[DayOfWeek] + "Periods"];
 		PeriodTimes = Schedule[DaysOfWeekAbrv[DayOfWeek] + "Times"];
 		
-		console.log(PeriodNames);
-		
-		
-		
-		
-			var firstHour ;
-			
+			var firstHour ;			
 			var lastHour ;
 			var firstMinute ;
 			var lastMinute ;
 			
-
-			const Remianing = document.getElementById("TimeRemaining");
 			var table = document.getElementById("Schedule");
 			AddNewHeader(table);
 
-		document.getElementById("LetterDay").innerHTML = LetterDay;
+			document.getElementById("LetterDay").innerHTML = LetterDay;
 
 			var foundCurrentPeriod = false;
 			for (var i = 0; i < PeriodNames.length; i++) {
-				console.log(i)
+				
 				var currentPeriod = false;
 				var startHour = PeriodTimes[i].slice(0, 2);
 				var endHour = PeriodTimes[i].slice(6, 8);
@@ -160,59 +152,12 @@ async function SetSchedule(Schedule) {
 					}
 					if (currentPeriod) {
 
-
 						hoursLeft = endHour - hour;
 						minutesLeft = endMinute - minutes;
-
-
-						if (minutesLeft < 0) {
-							hoursLeft -= 1;
-							minutesLeft += 60;
-						}
-						Remianing.innerHTML = "There is "
-
-						if (hoursLeft == 1) {
-							Remianing.innerHTML += hoursLeft + " hour ";
-						} else if (hoursLeft > 1) {
-							Remianing.innerHTML += hoursLeft + " hour ";
-						}
-
-						if (minutes > 1 || minutes == 0) {
-							Remianing.innerHTML += minutesLeft + " minutes left in";
-						} else {
-							Remianing.innerHTML += minutesLeft + " minute left in";
-						}
-						//console.log(json[0].classOrder[i].replace(/\s+/g, ''));
-						if (PeriodName != "Advisory" && PeriodName != "Seminar" && PeriodName != "Lunch" && PeriodName != "L&L") {
-							Remianing.innerHTML += " " + PeriodName + " Period"
-						} else {
-							Remianing.innerHTML += " " + PeriodName
-
-						}
+						TimeLeft(hoursLeft, minutesLeft, minutes);
 					}
 				}//end of within range
-				let tr = document.createElement('tr');
-				let TitleTR = document.createElement('td');
-
-				TitleTR.innerHTML = PeriodName
-				let TimeTR = document.createElement('td');
-				TimeTR.innerHTML = PeriodTimes[i];
-
-				if (currentPeriod) {
-
-					TitleTR.classList.add("CurrentPeriod");
-					TimeTR.classList.add("CurrentPeriod");
-
-					//TitleTR.classList.add("CurrentPeriod");
-					//TimeTR.classList.add("CurrentPeriod");
-
-
-				}
-
-				tr.appendChild(TitleTR);
-				tr.appendChild(TimeTR);
-
-				table.appendChild(tr);
+				AddNewElement(table, PeriodName, PeriodTimes[i], currentPeriod)
 
 			}
 			if (hour < firstHour || hour == firstHour && minutes < firstMinute) {
@@ -258,7 +203,54 @@ function AddNewHeader(table) {
 	table.appendChild(trObject)
 
 }
+function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
+	let tr = document.createElement('tr');
+				let TitleTR = document.createElement('td');
 
+				TitleTR.innerHTML = PeriodName
+				let TimeTR = document.createElement('td');
+				TimeTR.innerHTML = PeriodTime;
+
+				if (currentPeriod) {
+
+					TitleTR.classList.add("CurrentPeriod");
+					TimeTR.classList.add("CurrentPeriod");
+				}
+
+				tr.appendChild(TitleTR);
+				tr.appendChild(TimeTR);
+
+				table.appendChild(tr);
+}
+
+
+function TimeLeft(hoursLeft, minutesLeft, minutes) {
+
+	if (minutesLeft < 0) {
+		hoursLeft -= 1;
+		minutesLeft += 60;
+	}
+	Remianing.innerHTML = "There is "
+
+	if (hoursLeft == 1) {
+		Remianing.innerHTML += hoursLeft + " hour ";
+	} else if (hoursLeft > 1) {
+		Remianing.innerHTML += hoursLeft + " hour ";
+	}
+
+	if (minutes!=1) {
+		Remianing.innerHTML += minutesLeft + " minutes left in";
+	} else {
+		Remianing.innerHTML += minutesLeft + " minute left in";
+	}
+	//console.log(json[0].classOrder[i].replace(/\s+/g, ''));
+	if (PeriodName != "Advisory" && PeriodName != "Seminar" && PeriodName != "Lunch" && PeriodName != "L&L") {
+		Remianing.innerHTML += " " + PeriodName + " Period"
+	} else {
+		Remianing.innerHTML += " " + PeriodName
+
+	}
+}
 function SetDateAndTime() {
 
 	const d = new Date();
@@ -278,24 +270,4 @@ function SetDateAndTime() {
 	}
 
 }
-
-
-
-function SortArray(ArrayToSort) {
-	var tempArray = [];
-	
-	
-		
-		for (var i = 0; i < ArrayToSort.length; i++) {
-			
-			
-			if (ArrayToSort[i] != null && ArrayToSort[i] != "" ) {
-				tempArray.push(ArrayToSort[i]);
-			} else {
-				break;
-            }
-        }
-		
-	
-	return tempArray;
-}
+GetData();
