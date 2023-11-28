@@ -35,6 +35,7 @@ const firebaseConfig = {
 };
 
 function GetData() {
+	
 	SetDateAndTime();
 	if (DayOfWeek == 0 || DayOfWeek == 6) {
 		DailyMessageHEADER.innerHTML = "Enjoy your " + DaysOfWeekFull[DayOfWeek];
