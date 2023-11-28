@@ -44,3 +44,8 @@ option:hover {
 option{
     color:black;
 }
+
+.InputField{
+    display:none;
+    transition: 2s;
+}
