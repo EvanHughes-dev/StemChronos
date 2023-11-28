@@ -1,0 +1,72 @@
+<!Doctype html>
+<html>
+<!--
+    Have all settings here
+    i.e. Grade level, Period names, notifications
+    -->
+<head>
+   
+    <link href="Settings.css" rel="stylesheet" type="text/css">
+    <link href="../index.css" rel="stylesheet" type="text/css">
+   
+</head>
+<body>
+    <!--Title for Chronos-->
+    <div name="Header" class="ChronosHeader">
+        <div class="CurrentTimeHolder">
+            <div class="CurrentTime" id="CurrentTime"></div>
+            <div class="CurrentTime" id="CurrentDate"></div>
+        </div>
+        <div class="ChronosNameHolder">
+            <div class="ChronosName">STEM Chronos</div>
+        </div>
+
+
+    </div>
+
+   
+    <div name="Settings" class="Settings">
+        <!--Title for the attribute-->
+        <center>
+            <div class="SettingsHeader">
+                Chronos Settings
+            </div>
+
+        </center>
+
+        <!--Change the Grade Level-->
+        <p class="SettingsText">
+            We use this information to determine
+            which schedule to display in your STEM Chronos and improve your expirience
+        </p>
+
+        <center>
+            <select id="GradeLevel" onfocus='this.size=1;'>
+                <option value="Fresh"> I am a Freshman/Sophomore</option>
+                <option value="Sen">I am a Junior/Senior</option>
+
+            </select>
+            <br />
+            <div class="InputField"> 
+                
+                <label>1st Period</label> 
+                <select id="FirstSelect" name="FirstPeriod">
+                    
+                        <option class ="DefaultOption"disabled selected>Select When</option>
+                        <option value="ALL">Full Cycle</option>
+                        <option value="1ST">First Half</option>
+                        <option value="2ND">Second Half</option>
+                    
+                </select>
+            </div>
+        </center>
+
+
+
+    </div>
+   
+  
+
+</body>
+<script src="Settings.js"></script>
+</html>
