@@ -24,18 +24,22 @@ const WeekendImageOBJ = document.getElementById('WeekendImage');
 const Remianing = document.getElementById("TimeRemaining");
 
 const firebaseConfig = {
-	apiKey: "AIzaSyBL9jpJTz-eCYJM0r1etRbx_6YpPqa67_4",
-	authDomain: "chronos-96d4f.firebaseapp.com",
+	apiKey: decodeMessage('n6L<iGI3&H4!ML-h]y!0):Chc8}mK7y4%d<7DKY'),
+	authDomain: decodeMessage('sB:vNvu-&7(Y_?_S:h}<uh<44?svx'),
 	databaseURL: "https://chronos-96d4f.firebaseio.com",
 	projectId: "chronos-96d4f",
 	storageBucket: "chronos-96d4f.appspot.com",
 	messagingSenderId: "866705537581",
-	appId: "1:866705537581:web:5ba4523272685649c116a4",
+	appId: decodeMessage('Ckg77D)VV{DVgCkth}kV}<YV;{;D;7gV7Y&sCC7<YsB:vNvu-&7(Y_?_S:h}<uh<44?svx'),
 	measurementId: "G-RK77WZHGE9"
 };
 
 function GetData() {
-	
+	var userYear = localStorage.getItem("Year");
+	if (userYear == null) {
+		window.location = "./Welcome/Welcome.html";
+	}
+
 	SetDateAndTime();
 	if (DayOfWeek == 0 || DayOfWeek == 6) {
 		DailyMessageHEADER.innerHTML = "Enjoy your " + DaysOfWeekFull[DayOfWeek];
@@ -52,20 +56,9 @@ function GetData() {
 	db.settings(settings);
 	
 
-	var userYear = localStorage.getItem("Year");
-	if (userYear == null) {
-		alert("Choose your grade level");
-		localStorage.setItem("Year", "Fresh")
-		userYear = localStorage.getItem("Year")
-	}
-	document.getElementById("GradeLevel").value = localStorage.getItem("Year");
-	document.getElementById("GradeLevel").addEventListener("change", () => {
-
-		localStorage.setItem("Year", document.getElementById("GradeLevel").value)
-		location.reload();
-
-	});
-
+	
+	
+	
 
 	//const docRef = firebase.doc();
 	db.collection("Schedule").doc(userYear.toString()).get().then(docSnap => {
@@ -89,7 +82,7 @@ async function SetSchedule(Schedule) {
 	if (LetterDay=="X") {
 		return;
     }
-	console.log(Schedule);
+//	console.log(Schedule);
 
 	var PeriodNames = [];
 	var PeriodTimes = [];
@@ -256,7 +249,7 @@ function SetDateAndTime() {
 	let day = d.getDate();
 	let year = d.getFullYear();
 
-	document.getElementById("CurrentDate").innerHTML = AllMonths[month] + " " + day + ", " +year
+	document.getElementById("CurrentDate").innerHTML = AllMonths[month] + " " + day + ", " + year
 
 	if (minutes < 10) {
 		document.getElementById("CurrentTime").innerHTML = hour + ":0" + minutes

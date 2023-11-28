@@ -1,13 +1,13 @@
 {
-    "name": "STEM Chronos 2.0",
-    "version": "1.0.5",
-    "description": "New Verions of STEM Chronos (Still under development)",
+    "name": "STEM Chronos",
+    "version": "1.0.6",
+    "description": "Welcome to the new STEM Chronos",
     "manifest_version": 3,
     "author": "Evan Hughes",
 
     "action": {
         "default_popup": "index.html",
-        "default_title": "STEM Chronos 2.0"
+        "default_title": "STEM Chronos"
     },
     "icons": {
         "16": "DefaultImage.png",
