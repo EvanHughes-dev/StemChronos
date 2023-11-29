@@ -8,7 +8,7 @@
    
     <link href="Settings.css" rel="stylesheet" type="text/css">
     <link href="../index.css" rel="stylesheet" type="text/css">
-   
+  
 </head>
 <body>
     <!--Title for Chronos-->
@@ -37,8 +37,10 @@
         <!--Change the Grade Level-->
         <p class="SettingsText">
             We use this information to determine
-            which schedule to display in your STEM Chronos and improve your expirience
+            which schedule to display in your STEM Chronos and improve your expirience.
+            As of now, support only exists for naming periods you have every day, not pathways or electives
         </p>
+       
 
         <center>
             <select id="GradeLevel" onfocus='this.size=1;'>
@@ -48,9 +50,8 @@
 
             </select>
             <br />
-
+            <!--Set custom period names-->
             <div class="InputField" id="PeriodName">
-                <p class="SettingsText">As of now, support only exists for periods you have every day, not pathways or electives</p>
                 <div>
                     <label for="First">1st Period</label>
 
@@ -86,18 +87,27 @@
                     <label for="Seventh">7th Period</label>
                     <input name="Seventh" type="text" id="SeventhVal" />
                 </div>
-                <button id="PeriodSubmit" onclick="SavePeriodNames()">Save Periods</button>
+                
             </div>
-            <button id="PeriodToggle" onclick="TogglePeriod()">Edit Period Names</button> 
-</center>
+
+
+            <div>
+                <button id="PeriodSubmit" onclick="ClearCustomNames()">Reset Names</button>
+                <button onclick="BackToSchedule() ">Schedule</button>
+            </div>
+        </center>
 
 
 
     </div>
+
+
+    <div id="ErrorBox" class="ErrorBox">
+        
+
+    </div>
    <script>
-      
-      
-       
+    
        
 
    </script>

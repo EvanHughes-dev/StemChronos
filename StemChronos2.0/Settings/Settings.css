@@ -46,6 +46,13 @@ option{
 }
 
 .InputField{
-    display:none;
-    transition: 2s;
+ 
+}
+
+.ErrorBox{
+    width:90%;
+    margin-left:5%;
+    display:block;
+    background:red;
+    z-index:20;
 }
