@@ -2,8 +2,8 @@
 const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
 
 function Initial() {
-	if (localStorage.getItem('Year')==null) {
-		localStorage.setItem("Year", "Fresh")
+	if (localStorage.getItem('Year')!=null) {
+		document.getElementById("GradeLevel").value = localStorage.getItem('Year');
     }
 	
 	SetDateAndTime();
@@ -11,6 +11,11 @@ function Initial() {
 	document.getElementById("GradeLevel").addEventListener("change", () => {
 		UpdateGradeLevel();
 	});
+
+	
+	
+	SetCustomNameText();
+	
 
 }
 
@@ -43,13 +48,16 @@ const PeriodBtnOBJ = document.getElementById("PeriodToggle");
 
 const PeriodID = ["FirstVal", 'SecondVal', 'ThirdVal', 'FourthVal', 'FiffthVal', 'SixthVal', 'SeventhVal']
 
+for (var i = 0; i < PeriodID.length; i++) {
+	document.getElementById(PeriodID[i]).addEventListener("change", (source) => {
+		
+		SavePeriodNames(source.target.id);
+	})
+}
+
+/*
 function TogglePeriod() {
-	if (localStorage.getItem("Period1") != null) {
-		for (var i = 0; i < 6;i++) {
-			var tempI = i + 1;
-			document.getElementById(PeriodID[i]).value = localStorage.getItem("Period" + tempI);
-        }
-    }
+	
 	if (PeriodNameOBJ.style.display == "initial") {
 		PeriodNameOBJ.style.display = "none";
 		PeriodBtnOBJ.innerHTML ="Edit Period Names"
@@ -58,20 +66,55 @@ function TogglePeriod() {
 		PeriodBtnOBJ.innerHTML = "Stop Editing"
     }
 }
+*/
 
-function SavePeriodNames() {
-	for (var i = 0; i < 7; i++) {
+function SavePeriodNames(value) {
 	
-		if (document.getElementById(PeriodID[i]).value == null || document.getElementById(PeriodID[i]).value =="") {
-			alert("You must fill all periods with a name")
-			return;
+	
+
+	for (var i = 0; i < PeriodID.length;i++) {
+		var tempI = i + 1;
+		if (PeriodID[i] == value) {
+			if (document.getElementById(PeriodID[i]).value == "" || document.getElementById(PeriodID[i]).value==null) {
+				localStorage.removeItem("Period" + tempI)
+				return;
+            }
+			localStorage.setItem("Period" + tempI, document.getElementById(PeriodID[i]).value);
+			break;
         }
+		
+    }
+		
+
+}
+
+
+function ClearCustomNames() {
+	for (var i = 1; i <= 7; i++) {
+
+		
+		window.localStorage.removeItem("Period" + i)
+
 	}
-	for (var i = 1; i <= 6; i++) {
-		console.log(document.getElementById(PeriodID[i]).value +" "+ i)
-		localStorage.setItem("Period" + i, document.getElementById(PeriodID[i-1]).value);
-		 
+}
+
+function SetCustomNameText() {
+	for (var i = 0; i < 7; i++) {
+		var tempI = i + 1;
+		if (localStorage.getItem("Period" + tempI) != null) {
+		
+
+			document.getElementById(PeriodID[i]).value = localStorage.getItem("Period" + tempI);
+		}
 	}
+}
+
+var ErrorBox = document.getElementById("ErrorBox");
+function BackToSchedule() {
+	
+
+		window.location = "../index.html";
+    
 
 }
 Initial()

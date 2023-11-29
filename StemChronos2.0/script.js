@@ -192,9 +192,14 @@ function AddNewHeader(table) {
 }
 
 function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
+	if (PeriodName != "Advisory" && PeriodName != "Seminar" && PeriodName != "Lunch" && PeriodName != "L&L") {
+		if (window.localStorage.getItem('Period'+PeriodName.substring(0,1))!=null) {
+			PeriodName = window.localStorage.getItem('Period' + PeriodName.substring(0, 1));
+        }
+    }
 	let tr = document.createElement('tr');
 				let TitleTR = document.createElement('td');
-
+				
 				TitleTR.innerHTML = PeriodName
 				let TimeTR = document.createElement('td');
 				TimeTR.innerHTML = PeriodTime;
@@ -212,7 +217,13 @@ function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 }
 
 function TimeLeft(hoursLeft, minutesLeft, minutes, PeriodName) {
-
+	var customName=false;
+	if (PeriodName != "Advisory" && PeriodName != "Seminar" && PeriodName != "Lunch" && PeriodName != "L&L") {
+		if (window.localStorage.getItem('Period' + PeriodName.substring(0, 1)) != null) {
+			PeriodName = window.localStorage.getItem('Period' + PeriodName.substring(0, 1));
+			customName = true;
+		}
+	}
 	if (minutesLeft < 0) {
 		hoursLeft -= 1;
 		minutesLeft += 60;
@@ -231,7 +242,7 @@ function TimeLeft(hoursLeft, minutesLeft, minutes, PeriodName) {
 		Remianing.innerHTML += minutesLeft + " minute left in";
 	}
 	//console.log(json[0].classOrder[i].replace(/\s+/g, ''));
-	if (PeriodName != "Advisory" && PeriodName != "Seminar" && PeriodName != "Lunch" && PeriodName != "L&L") {
+	if (PeriodName != "Advisory" && PeriodName != "Seminar" && PeriodName != "Lunch" && PeriodName != "L&L" && !customName) {
 		Remianing.innerHTML += " " + PeriodName + " Period"
 	} else {
 		Remianing.innerHTML += " " + PeriodName
