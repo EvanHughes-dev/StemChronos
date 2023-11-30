@@ -2,7 +2,9 @@
 <html>
 <!--
     Have all settings here
-    i.e. Grade level, Period names, notifications
+    i.e. Grade level
+    Period names
+    notifications
     -->
 <head>
    
@@ -35,7 +37,7 @@
 
         </center>
 
-        <!--Change the Grade Level-->
+        
         <p class="fs-6 mb-2 mx-3">
             We use this information to determine
             which schedule to display in your STEM Chronos and improve your expirience.
@@ -44,14 +46,15 @@
        
 
         <center>
-            <select id="GradeLevel" onfocus='this.size=1;' class="form-select w-75 mb-3">
+            <!--Change the Grade Level-->
+            <select id="GradeLevel" class="form-select w-75 mb-3">
                 <option class="DefaultOption" value="NULL" selected disabled>Select your grade level</option>
                 <option value="Fresh"> I am a Freshman/Sophomore</option>
                 <option value="Sen">I am a Junior/Senior</option>
 
             </select>
             <!--Set custom period names-->
-            <div class="InputField" id="PeriodName">
+            <div class="InputField" id="PeriodNameOBJ">
                 <div class="row g-2 mb-1">
                     <label class="col-sm-4 col-form-label mx-3" for="First">1st Period:</label>
                     <input class="col-sm-10 form-control w-50 col-auto" name="First" type="text" id="FirstVal" />
@@ -81,13 +84,13 @@
                     <label class="col-sm-4 col-form-label mx-3" for="Seventh">7th Period:</label>
                     <input class="col-sm-10 form-control w-50 col-auto" name="Seventh" type="text" id="SeventhVal" />
                 </div>
-                
+
             </div>
 
-
+            <!--Buttons-->
             <div class="mt-2">
-                <button id="PeriodSubmit" onclick="ClearCustomNames()" class="btn btn-secondary">Reset Names</button>
-                <button onclick="BackToSchedule()" class="btn btn-primary">Schedule</button>
+                <button id="PeriodReset" class="btn btn-secondary">Reset Names</button>
+                <button id="ScheduleBTN" class="btn btn-primary">Schedule</button>
             </div>
         </center>
 
@@ -95,17 +98,6 @@
 
     </div>
 
-
-    <div id="ErrorBox" class="ErrorBox">
-        
-
-    </div>
-   <script>
-    
-       
-
-   </script>
-  
 
 </body>
 <script src="Settings.js"></script>
