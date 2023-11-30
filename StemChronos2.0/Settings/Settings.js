@@ -1,6 +1,8 @@
 
 const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
 
+document.getElementById('ScheduleBTN').addEventListener('click', () => { BackToSchedule()})
+document.getElementById('PeriodReset').addEventListener('click', () => { ClearCustomNames() })
 function Initial() {
 	if (localStorage.getItem('Year')!=null) {
 		document.getElementById("GradeLevel").value = localStorage.getItem('Year');
@@ -96,6 +98,7 @@ function ClearCustomNames() {
 		window.localStorage.removeItem("Period" + i)
 
 	}
+	SetCustomNameText();
 }
 
 function SetCustomNameText() {

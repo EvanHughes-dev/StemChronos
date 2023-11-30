@@ -2,6 +2,7 @@ body {
     width: 300px;
   
     background-color: #Eeeef3;
+   
     
 }
 #Schedule {
@@ -17,7 +18,10 @@ body {
         border: 1px solid #ddd;
         padding: 1px;
     }
-   
+    #Schedule tr {
+        font-size: 15px;
+    }
+    
     #Schedule tr:nth-child(even) {
         background-color: #f2f2f2;
     }

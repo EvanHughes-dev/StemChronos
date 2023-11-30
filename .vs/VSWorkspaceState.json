@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\StemChronos2.0"
+    "\\StemChronos2.0",
+    "\\StemChronos2.0\\Welcome"
   ],
+  "SelectedNode": "\\StemChronos2.0\\manifest.json",
   "PreviewInSolutionExplorer": false
 }

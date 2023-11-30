@@ -8,7 +8,7 @@
    
     <link href="Settings.css" rel="stylesheet" type="text/css">
     <link href="../index.css" rel="stylesheet" type="text/css">
-  
+ 
 </head>
 <body>
     <!--Title for Chronos-->
@@ -43,7 +43,7 @@
        
 
         <center>
-            <select id="GradeLevel" onfocus='this.size=1;'>
+            <select id="GradeLevel" >
                 <option class="DefaultOption" value="NULL" selected disabled>Select your grade level</option>
                 <option value="Fresh"> I am a Freshman/Sophomore</option>
                 <option value="Sen">I am a Junior/Senior</option>
@@ -92,8 +92,8 @@
 
 
             <div>
-                <button id="PeriodSubmit" onclick="ClearCustomNames()">Reset Names</button>
-                <button onclick="BackToSchedule() ">Schedule</button>
+                <button id="PeriodReset" >Reset Names</button>
+                <button id="ScheduleBTN">Schedule</button>
             </div>
         </center>
 
@@ -102,15 +102,7 @@
     </div>
 
 
-    <div id="ErrorBox" class="ErrorBox">
-        
-
-    </div>
-   <script>
-    
-       
-
-   </script>
+   
   
 
 </body>
