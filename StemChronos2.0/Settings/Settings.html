@@ -2,23 +2,26 @@
 <html>
 <!--
     Have all settings here
-    i.e. Grade level, Period names, notifications
+    i.e. Grade level
+    Period names
+    notifications
     -->
 <head>
    
     <link href="Settings.css" rel="stylesheet" type="text/css">
     <link href="../index.css" rel="stylesheet" type="text/css">
- 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
 </head>
 <body>
     <!--Title for Chronos-->
     <div name="Header" class="ChronosHeader">
-        <div class="CurrentTimeHolder">
-            <div class="CurrentTime" id="CurrentTime"></div>
-            <div class="CurrentTime" id="CurrentDate"></div>
+        <div class="text-end me-2 pt-2">
+            <div class="text-white text-bold" id="CurrentDate"></div>
+            <div class="text-white" id="CurrentTime"></div>
         </div>
-        <div class="ChronosNameHolder">
-            <div class="ChronosName">STEM Chronos</div>
+        <div>
+            <div class="fs-3 ms-2 mb-2 text-white">STEM Chronos</div>
         </div>
 
 
@@ -28,14 +31,14 @@
     <div name="Settings" class="Settings">
         <!--Title for the attribute-->
         <center>
-            <div class="SettingsHeader">
+            <div class="fs-5">
                 Chronos Settings
             </div>
 
         </center>
 
-        <!--Change the Grade Level-->
-        <p class="SettingsText">
+        
+        <p class="fs-6 mb-2 mx-3">
             We use this information to determine
             which schedule to display in your STEM Chronos and improve your expirience.
             As of now, support only exists for naming periods you have every day, not pathways or electives
@@ -43,57 +46,51 @@
        
 
         <center>
-            <select id="GradeLevel" >
+            <!--Change the Grade Level-->
+            <select id="GradeLevel" class="form-select w-75 mb-3">
                 <option class="DefaultOption" value="NULL" selected disabled>Select your grade level</option>
                 <option value="Fresh"> I am a Freshman/Sophomore</option>
                 <option value="Sen">I am a Junior/Senior</option>
 
             </select>
-            <br />
             <!--Set custom period names-->
-            <div class="InputField" id="PeriodName">
-                <div>
-                    <label for="First">1st Period</label>
-
-
-                    <input name="First" type="text" id="FirstVal" />
-
-
+            <div class="InputField" id="PeriodNameOBJ">
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="First">1st Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="First" type="text" id="FirstVal" />
                 </div>
-                <div>
-                    <label for="Second">2nd Period</label>
-                    <input name="Second" type="text" id="SecondVal" />
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="Second">2nd Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="Second" type="text" id="SecondVal" />
                 </div>
 
-                <div>
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="Third">3rd Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="Third" type="text" id="ThirdVal" />
+                </div>
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="Fourth">4th Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="Fourth" type="text" id="FourthVal" />
+                </div>
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="Fifth">5th Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="Fifth" type="text" id="FiffthVal" />
+                </div>
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="Sixth">6th Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="Sixth" type="text" id="SixthVal" />
+                </div>
+                <div class="row g-2 mb-1">
+                    <label class="col-sm-4 col-form-label mx-3" for="Seventh">7th Period:</label>
+                    <input class="col-sm-10 form-control w-50 col-auto" name="Seventh" type="text" id="SeventhVal" />
+                </div>
 
-                    <label for="Third">3rd Period</label>
-                    <input name="Third" type="text" id="ThirdVal" />
-
-                </div>
-                <div>
-                    <label for="Fourth">4th Period</label>
-                    <input name="Fourth" type="text" id="FourthVal" />
-                </div>
-                <div>
-                    <label for="Fiffth">5th Period</label>
-                    <input name="Fiffth" type="text" id="FiffthVal" />
-                </div>
-                <div>
-                    <label for="Sixth">6th Period</label>
-                    <input name="Sixth" type="text" id="SixthVal" />
-                </div>
-                <div>
-                    <label for="Seventh">7th Period</label>
-                    <input name="Seventh" type="text" id="SeventhVal" />
-                </div>
-                
             </div>
 
-
-            <div>
-                <button id="PeriodReset" >Reset Names</button>
-                <button id="ScheduleBTN">Schedule</button>
+            <!--Buttons-->
+            <div class="mt-2">
+                <button id="PeriodReset" class="btn btn-secondary">Reset Names</button>
+                <button id="ScheduleBTN" class="btn btn-primary">Schedule</button>
             </div>
         </center>
 
@@ -101,9 +98,6 @@
 
     </div>
 
-
-   
-  
 
 </body>
 <script src="Settings.js"></script>

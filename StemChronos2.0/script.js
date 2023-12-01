@@ -188,7 +188,7 @@ function AddNewHeader(table) {
 	trObject.appendChild(period);
 	trObject.appendChild(time);
 	table.appendChild(trObject)
-
+	trObject.classList.add("table-primary");
 }
 
 function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
@@ -206,8 +206,8 @@ function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 
 				if (currentPeriod) {
 
-					TitleTR.classList.add("CurrentPeriod");
-					TimeTR.classList.add("CurrentPeriod");
+					TitleTR.classList.add("navy", "text-white");
+					TimeTR.classList.add("navy", "text-white");
 				}
 
 				tr.appendChild(TitleTR);
@@ -228,7 +228,7 @@ function TimeLeft(hoursLeft, minutesLeft, minutes, PeriodName) {
 		hoursLeft -= 1;
 		minutesLeft += 60;
 	}
-	Remianing.innerHTML = "There is "
+	Remianing.innerHTML = ""
 
 	if (hoursLeft == 1) {
 		Remianing.innerHTML += hoursLeft + " hour ";

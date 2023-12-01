@@ -1,87 +1,89 @@
 
+/*
+ * @EHughes
+ * Javascript control for Settings.html
+ * Initial() runs on page load
+ * 
+ * Future maintainers,
+ * Please comment code well. 
+ * Comment what each function does and where it is called from
+ * -EHughes
+ */
+
 const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
+const PeriodID = ["FirstVal", 'SecondVal', 'ThirdVal', 'FourthVal', 'FiffthVal', 'SixthVal', 'SeventhVal']
 
-document.getElementById('ScheduleBTN').addEventListener('click', () => { BackToSchedule()})
-document.getElementById('PeriodReset').addEventListener('click', () => { ClearCustomNames() })
-function Initial() {
-	if (localStorage.getItem('Year')!=null) {
+function Initial() {//called on script load
+	if (localStorage.getItem('Year') != null) {
 		document.getElementById("GradeLevel").value = localStorage.getItem('Year');
-    }
-	
-	SetDateAndTime();
+	}
 
-	document.getElementById("GradeLevel").addEventListener("change", () => {
-		UpdateGradeLevel();
-	});
-
-	
-	
-	SetCustomNameText();
-	
+	SetDateAndTime();//Sets the header date and time
+	SetCustomNameText();//Checks if there are names saved and displays them
+	AddEventListeners()//add all needed event listeners
 
 }
 
-
-function UpdateGradeLevel() {
+function UpdateGradeLevel() {//called from AddEventListeners()
+	//sets new grade level
 	localStorage.setItem("Year", document.getElementById("GradeLevel").value)
 }
 
-function SetDateAndTime() {
+function AddEventListeners() {//called from Initial()
+	
+	document.getElementById("GradeLevel").addEventListener("change", () => { UpdateGradeLevel() });//Change grade level
+	
+	document.getElementById("PeriodReset").addEventListener("click", () => { ClearCustomNames() });//Clear all names BTN
+	
+	document.getElementById("ScheduleBTN").addEventListener("click", () => { BackToSchedule() });//Go back to schedule BTN
+
+	for (var i = 0; i < PeriodID.length; i++) {//Add event listener for all schedule name inputs
+		document.getElementById(PeriodID[i]).addEventListener("change", (source) => {
+
+			SavePeriodNames(source.target.id);//save the period name asscociated with this objects id
+		})
+	}
+
+
+}
+
+function SetDateAndTime() {//called from Initial()
 	//Display the date and time for the Chronos header
-	const d = new Date();
-	let hour = d.getHours();
-	let minutes = d.getMinutes();
+	const d = new Date();//Current date
+	let hour = d.getHours();//Current hour in 24-hour
+	let minutes = d.getMinutes();//Current Minute
 
-	let month = d.getMonth();
-	let day = d.getDate();
-	let year = d.getFullYear();
+	let month = d.getMonth();//current month 0-11
+	let day = d.getDate();//current day
+	let year = d.getFullYear();//current full year
 
-	document.getElementById("CurrentDate").innerHTML = AllMonths[month] + " " + day + ", " + year
+	document.getElementById("CurrentDate").innerHTML = AllMonths[month] + " " + day + ", " + year;//set the day month, year display
 
-	if (minutes < 10) {
-		document.getElementById("CurrentTime").innerHTML = hour + ":0" + minutes
+	if (minutes < 10) {//If minutes is less than 10
+		document.getElementById("CurrentTime").innerHTML = hour + ":0" + minutes;//add a zero before minutes to maintain format
 	} else {
-		document.getElementById("CurrentTime").innerHTML = hour + ":" + minutes
+		document.getElementById("CurrentTime").innerHTML = hour + ":" + minutes;//just a the minutes
 	}
 
 }
-const PeriodNameOBJ = document.getElementById("PeriodName");
-const PeriodBtnOBJ = document.getElementById("PeriodToggle");
 
-const PeriodID = ["FirstVal", 'SecondVal', 'ThirdVal', 'FourthVal', 'FiffthVal', 'SixthVal', 'SeventhVal']
-
-for (var i = 0; i < PeriodID.length; i++) {
-	document.getElementById(PeriodID[i]).addEventListener("change", (source) => {
-		
-		SavePeriodNames(source.target.id);
-	})
-}
-
-/*
-function TogglePeriod() {
+function SavePeriodNames(value) {//called from AddEventListeners()
 	
-	if (PeriodNameOBJ.style.display == "initial") {
-		PeriodNameOBJ.style.display = "none";
-		PeriodBtnOBJ.innerHTML ="Edit Period Names"
-	} else {
-		PeriodNameOBJ.style.display = "initial";
-		PeriodBtnOBJ.innerHTML = "Stop Editing"
-    }
-}
-*/
+	for (var i = 0; i < PeriodID.length; i++) {
 
-function SavePeriodNames(value) {
-	
-	
+		var LocalStorageI = i + 1;//LocalStorageI since local storage name is one greater then the i value
 
-	for (var i = 0; i < PeriodID.length;i++) {
-		var tempI = i + 1;
 		if (PeriodID[i] == value) {
-			if (document.getElementById(PeriodID[i]).value == "" || document.getElementById(PeriodID[i]).value==null) {
-				localStorage.removeItem("Period" + tempI)
-				return;
+
+			var InputValue = document.getElementById(PeriodID[i]).value;//value inputed into field
+
+			if (InputValue == "" || InputValue == null) {
+
+				localStorage.removeItem("Period" + LocalStorageI)//remove value if field was cleared
+				break;//stop running
+
             }
-			localStorage.setItem("Period" + tempI, document.getElementById(PeriodID[i]).value);
+			localStorage.setItem("Period" + LocalStorageI, InputValue);//set new value
 			break;
         }
 		
@@ -91,33 +93,31 @@ function SavePeriodNames(value) {
 }
 
 
-function ClearCustomNames() {
+function ClearCustomNames() {//called from AddEventListeners() && SavePeriodNames()
+	//remove all period
 	for (var i = 1; i <= 7; i++) {
 
-		
-		window.localStorage.removeItem("Period" + i)
+		window.localStorage.removeItem("Period" + i)//remove period from storage
 
 	}
-	SetCustomNameText();
+	SetCustomNameText();//display cleared names
 }
 
-function SetCustomNameText() {
+function SetCustomNameText() {//called from Initial() && ClearCustomNames()
 	for (var i = 0; i < 7; i++) {
-		var tempI = i + 1;
-		if (localStorage.getItem("Period" + tempI) != null) {
-		
-
-			document.getElementById(PeriodID[i]).value = localStorage.getItem("Period" + tempI);
-		}
+		var LocalStorageI = i + 1;//LocalStorageI since local storage name is one greater then the i value
+		if (localStorage.getItem("Period" + LocalStorageI) != null) {//if there is a value
+			document.getElementById(PeriodID[i]).value = localStorage.getItem("Period" + LocalStorageI);//display it
+		} else {
+			document.getElementById(PeriodID[i]).value = "";//display nothing
+        }
 	}
 }
 
-var ErrorBox = document.getElementById("ErrorBox");
-function BackToSchedule() {
-	
 
-		window.location = "../index.html";
-    
+function BackToSchedule() {//called from AddEventListeners()
+
+	window.location = "../index.html";
 
 }
-Initial()
+Initial()//starts the scripts needed on launch
