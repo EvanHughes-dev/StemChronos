@@ -1,3 +1,11 @@
+/*
+ * @EHughes
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
 
 // Import the functions you need from the SDKs you need
@@ -23,6 +31,8 @@ const LetterDayOBJ = document.getElementById('LetterDayParent');
 const WeekendImageOBJ = document.getElementById('WeekendImage');
 const Remianing = document.getElementById("TimeRemaining");
 
+
+
 const firebaseConfig = {
 	apiKey: decodeMessage('n6L<iGI3&H4!ML-h]y!0):Chc8}mK7y4%d<7DKY'),
 	authDomain: decodeMessage('sB:vNvu-&7(Y_?_S:h}<uh<44?svx'),
@@ -33,6 +43,13 @@ const firebaseConfig = {
 	appId: decodeMessage('Ckg77D)VV{DVgCkth}kV}<YV;{;D;7gV7Y&sCC7<YsB:vNvu-&7(Y_?_S:h}<uh<44?svx'),
 	measurementId: "G-RK77WZHGE9"
 };
+
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore(app);
+const settings = { timestampsInSnapshots: true };
+db.settings(settings);
 
 function GetData() {
 	var userYear = localStorage.getItem("Year");
@@ -49,11 +66,7 @@ function GetData() {
     }
 
 
-	// Initialize Firebase
-	const app = firebase.initializeApp(firebaseConfig);
-	const db = firebase.firestore(app);
-	const settings = {timestampsInSnapshots: true };
-	db.settings(settings);
+	
 	
 
 	
@@ -75,7 +88,9 @@ function GetData() {
 }
 
 async function SetSchedule(Schedule) {
-	
+
+	FetchMessageData();
+
 	let hour = d.getHours();
 	let minutes = d.getMinutes();
 	var LetterDay = Schedule[DaysOfWeekAbrv[DayOfWeek] + "Letter"]
@@ -101,6 +116,7 @@ async function SetSchedule(Schedule) {
 
 			document.getElementById("LetterDay").innerHTML = LetterDay;
 
+		
 			var foundCurrentPeriod = false;
 			for (var i = 0; i < PeriodNames.length; i++) {
 				
@@ -115,7 +131,11 @@ async function SetSchedule(Schedule) {
 					firstHour = startHour;
 					firstMinute = startMinute;
 				}
+				if (i+1 == PeriodNames.length) {
 
+					lastHour = endHour;
+					lastMinute = endMinute;
+				}
 
 				var hoursLeft;
 				var minutesLeft;
@@ -201,8 +221,38 @@ function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 				let TitleTR = document.createElement('td');
 				
 				TitleTR.innerHTML = PeriodName
-				let TimeTR = document.createElement('td');
+	let TimeTR = document.createElement('td');
+
+	var TimeMode = localStorage.getItem("TimeMode");
+			if (TimeMode == null || TimeMode == "12Hour") {
+				var startHour = PeriodTime.slice(0, 2);
+				var endHour = PeriodTime.slice(6, 8);
+				var endMinute = PeriodTime.slice(9, 11);
+				var startMinute = PeriodTime.slice(3, 5);
+				var StartTime_AmPm ="AM";
+				var EndTime_AmPm = "AM";
+				if (startHour >= 12) {
+					SstartTime_AmPm = "PM"
+					if (startHour >= 13) {
+						startHour -= 12;
+                    }
+				}
+
+				if (endHour >= 12) {
+					EndTime_AmPm = "PM"
+					if (endHour >= 13) {
+						endHour -= 12;
+						if (endHour < 10) {
+							endHour = "0" + endHour;
+                        }
+					}
+				}
+				console.log()
+				TimeTR.innerHTML = startHour + ":" + startMinute + " " + StartTime_AmPm + " - " + endHour + ":" + endMinute + " " + EndTime_AmPm;
+			} else {
 				TimeTR.innerHTML = PeriodTime;
+			}
+				
 
 				if (currentPeriod) {
 
@@ -270,3 +320,30 @@ function SetDateAndTime() {
 
 }
 GetData();
+
+
+
+function FetchMessageData() {
+
+
+	//const docRef = firebase.doc();
+	db.collection("Schedule").doc("DailyMessage").get().then(docSnap => {
+		if (docSnap.exists) {
+			SetDailyMessage(docSnap.data())
+
+		} else {
+			// docSnap.data() will be undefined in this case
+			console.log("No such document!");
+
+		}
+	}
+	);
+
+}
+
+function SetDailyMessage(Data) {
+	const TODAYValue = Data[DaysOfWeekFull[DayOfWeek]]
+	
+	document.getElementById("DailyMessageHeader").innerHTML = TODAYValue[0];
+	document.getElementById("DailyMessageText").innerHTML = TODAYValue[1];
+}

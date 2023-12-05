@@ -6,7 +6,8 @@
  * 
  * Future maintainers,
  * Please comment code well. 
- * Comment what each function does and where it is called from
+ * Comment what each function does and where it is called from.
+ * As well as the general gist of if statements if there are variables that change values often
  * -EHughes
  */
 
@@ -14,14 +15,22 @@ const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July"
 const PeriodID = ["FirstVal", 'SecondVal', 'ThirdVal', 'FourthVal', 'FiffthVal', 'SixthVal', 'SeventhVal']
 
 function Initial() {//called on script load
-	if (localStorage.getItem('Year') != null) {
-		document.getElementById("GradeLevel").value = localStorage.getItem('Year');
-	}
-
+	
+	SetDefaultSelect();//Sets deault values for the selects if there are any
 	SetDateAndTime();//Sets the header date and time
 	SetCustomNameText();//Checks if there are names saved and displays them
 	AddEventListeners()//add all needed event listeners
 
+}
+
+function SetDefaultSelect() {//called from Initial()
+	if (localStorage.getItem('Year') != null) {//if there is a value
+		document.getElementById("GradeLevel").value = localStorage.getItem('Year');//set the grade level to it
+	}
+
+	if (localStorage.getItem('TimeMode') != null) {//if there is a value
+		document.getElementById('TimeMode').value = localStorage.getItem('TimeMode');//set the time mode to it
+	}
 }
 
 function UpdateGradeLevel() {//called from AddEventListeners()
@@ -29,10 +38,17 @@ function UpdateGradeLevel() {//called from AddEventListeners()
 	localStorage.setItem("Year", document.getElementById("GradeLevel").value)
 }
 
+function UpdateTimeMode() {//called from AddEventListeners()
+	//sets new time mode 12 vs 24 hour
+	localStorage.setItem("TimeMode", document.getElementById("TimeMode").value)
+}
+
 function AddEventListeners() {//called from Initial()
 	
 	document.getElementById("GradeLevel").addEventListener("change", () => { UpdateGradeLevel() });//Change grade level
-	
+
+	document.getElementById("TimeMode").addEventListener("change", () => { UpdateTimeMode() });//Change grade level
+
 	document.getElementById("PeriodReset").addEventListener("click", () => { ClearCustomNames() });//Clear all names BTN
 	
 	document.getElementById("ScheduleBTN").addEventListener("click", () => { BackToSchedule() });//Go back to schedule BTN
@@ -108,7 +124,7 @@ function SetCustomNameText() {//called from Initial() && ClearCustomNames()
 		var LocalStorageI = i + 1;//LocalStorageI since local storage name is one greater then the i value
 		if (localStorage.getItem("Period" + LocalStorageI) != null) {//if there is a value
 			document.getElementById(PeriodID[i]).value = localStorage.getItem("Period" + LocalStorageI);//display it
-		} else {
+		} else {//if there isnt a value
 			document.getElementById(PeriodID[i]).value = "";//display nothing
         }
 	}
