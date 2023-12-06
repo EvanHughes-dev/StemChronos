@@ -13,6 +13,7 @@
 
 const AllMonths = ["January", "Febuary", "March", "April", "May", "June", "July", "Agust", "September", "October", "November", "December"];
 const PeriodID = ["FirstVal", 'SecondVal', 'ThirdVal', 'FourthVal', 'FiffthVal', 'SixthVal', 'SeventhVal']
+const PeriodInputID = ['FirstValToggle', 'SecondValToggle', 'ThirdValToggle', 'FourthValToggle', 'FiffthValToggle', 'SixthValToggle', 'SeventhValToggle'];
 
 function Initial() {//called on script load
 	
@@ -58,6 +59,15 @@ function AddEventListeners() {//called from Initial()
 
 			SavePeriodNames(source.target.id);//save the period name asscociated with this objects id
 		})
+	}
+
+	for (let i = 0; i < PeriodInputID.length; i++) {//Add eventlisteners to all schedule input toggle arrows
+		const element = PeriodInputID[i];//id for element
+		
+		document.getElementById(element).addEventListener("click", (source)=>{//add the listener and pass the object
+			ToggleInput(source.target.id)//toggle display of input field and pass the target id
+		})
+		
 	}
 
 
@@ -136,4 +146,44 @@ function BackToSchedule() {//called from AddEventListeners()
 	window.location = "../index.html";
 
 }
+
+
+function ToggleInput(sourceId){//Toggles input fields for period names. Called from AddEventlisteners()
+
+	for (let i = 0; i < PeriodInputID.length; i++) {//loop through all option
+		const element = PeriodInputID[i];//check value of current index
+
+		if(element==sourceId){//if it matches source id
+
+			const InputElement=document.getElementById(PeriodID[i]);
+			const ToggleElement=document.getElementById(PeriodInputID[i]);
+
+			console.log(InputElement.style.display)
+			//this part deals with displaying the input field for that object
+			if(InputElement.style.display=="none" ||InputElement.style.display==""){//if it is not displayed or not set
+				InputElement.style.display="revert";//display it
+			}else{//if it is diaplyed
+				InputElement.style.display="none";//don't display it
+			}
+
+			//this section deals with turning the arrow so it is facing the right direction
+			const ClassList = ToggleElement.classList;//get all class names of the object
+			
+			ClassList.forEach(element => {//for each class
+				if(element=="ToggleArrowShow"){//check if class name 1 exists
+					ToggleElement.classList.remove("ToggleArrowShow");//turn off class name 1
+					ToggleElement.classList.add("ToggleArrowHide");//turn on class name 2
+				}else if(element=="ToggleArrowHide"){//else if class name 2 exists
+					ToggleElement.classList.remove("ToggleArrowHide");//turn off class name 2
+					ToggleElement.classList.add("ToggleArrowShow");//turn on class name 1
+				}
+			});
+
+			break;
+		}
+		
+	}
+
+}
+
 Initial()//starts the scripts needed on launch

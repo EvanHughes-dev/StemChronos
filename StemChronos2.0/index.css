@@ -1,11 +1,13 @@
 body {
-    width: 300px;
+    width: 250px;
   
     background-color: #Eeeef3;
    
-    
+    font-size: 15px;
 }
-
+tr{
+font-size: 12px;
+}
 .CurrentPeriod {
     background-color: #92cbdf;
 }
@@ -140,3 +142,6 @@ body {
     .ReportBtn:hover {
         cursor: pointer;
     }
+
+
+

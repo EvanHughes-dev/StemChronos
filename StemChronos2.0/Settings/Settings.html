@@ -38,58 +38,63 @@
         </center>
 
         
-        <p class="fs-6 mb-2 mx-3">
+        <p class="SettingsText">
             We use this information to determine
             which schedule to display in your STEM Chronos and improve your expirience.
             As of now, support only exists for naming periods you have every day, not pathways or electives
         </p>
        
-
         <center>
             <!--Change the Grade Level-->
-            <select id="GradeLevel" class="form-select w-75 mb-3">
+            <select id="GradeLevel" >
                 <option class="DefaultOption" value="NULL" selected disabled>Select your grade level</option>
                 <option value="Fresh"> I am a Freshman/Sophomore</option>
                 <option value="Sen">I am a Junior/Senior</option>
-
             </select>
 
-            <select id="TimeMode" class="form-select w-75 mb-3">
+            <select id="TimeMode">
                 <option class="DefaultOption" value="NULL" selected disabled>Select Time Format</option>
                 <option value="24Hour">24 hour</option>
                 <option value="12Hour">12 hour</option>
 
             </select>
             <!--Set custom period names-->
-            <div class="InputField" id="PeriodNameOBJ">
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="First">1st Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="First" type="text" id="FirstVal" />
+            <div id="PeriodNameOBJ">
+                <div class="InputField">
+                    <label for="FirstVal">1st Period</label>
+                    <label id="FirstValToggle"for:"FirstVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="First" type="text" id="FirstVal" />
                 </div>
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="Second">2nd Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="Second" type="text" id="SecondVal" />
+                <div class="InputField">
+                    <label for="SecondVal">2nd Period</label>
+                    <label id="SecondValToggle"for:"SecondVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="Second" type="text" id="SecondVal" />
                 </div>
 
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="Third">3rd Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="Third" type="text" id="ThirdVal" />
+                <div class="InputField">
+                    <label  for="ThirdVal">3rd Period</label>
+                    <label id="ThirdValToggle"for:"ThirdVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="Third" type="text" id="ThirdVal" />
                 </div>
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="Fourth">4th Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="Fourth" type="text" id="FourthVal" />
+                <div class="InputField">
+                    <label for="FourthVal">4th Period</label>
+                    <label id="FourthValToggle"for:"FourthVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="Fourth" type="text" id="FourthVal" />
                 </div>
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="Fifth">5th Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="Fifth" type="text" id="FiffthVal" />
+                <div class="InputField">
+                    <label for="FiffthVal">5th Period</label>
+                    <label id="FiffthValToggle"for:"FiffthVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="Fifth" type="text" id="FiffthVal" />
                 </div>
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="Sixth">6th Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="Sixth" type="text" id="SixthVal" />
+                <div class="InputField">
+                    <label for="SixthVal">6th Period</label>
+                    <label id="SixthValToggle"for:"SixthVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="Sixth" type="text" id="SixthVal" />
                 </div>
-                <div class="row g-2 mb-1">
-                    <label class="col-sm-4 col-form-label mx-3" for="Seventh">7th Period:</label>
-                    <input class="col-sm-10 form-control w-50 col-auto" name="Seventh" type="text" id="SeventhVal" />
+                <div class="InputField">
+                    <label for="SeventhVal">7th Period</label>
+                    <label id="SeventhValToggle"for:"SeventhVal" class="ToggleArrowHide">&#x203A;</label>
+                    <input name="Seventh" type="text" id="SeventhVal" />
                 </div>
 
             </div>

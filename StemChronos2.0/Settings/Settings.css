@@ -11,7 +11,7 @@ body {
 }
 
 .SettingsHeader {
-    font-size: 30px;
+    font-size: 25px;
     background: #Eeeef3;
     
     border-bottom: solid;
@@ -27,7 +27,7 @@ body {
 
 select.DropDown {
     margin-left: 2px;
-    width: 90%;
+    width: 70%;
 }
 
 
@@ -44,10 +44,9 @@ option:hover {
 option{
     color:black;
 }
-
 .InputField{
- 
-}
+    padding-top:2px;
+ }
 
 .ErrorBox{
     width:90%;
@@ -55,4 +54,32 @@ option{
     display:block;
     background:red;
     z-index:20;
+}
+
+
+.ToggleArrowHide{
+    font-size: 20px;
+    padding-left: 3px;
+    transition: 1s;
+}
+    .ToggleArrowHide:hover{
+    
+        rotate: 90deg;
+    }
+
+    .ToggleArrowShow{
+        font-size: 20px;
+        padding-left: 3px;
+        transition: 1s;
+        rotate: 90deg; 
+    }
+        .ToggleArrowShow:hover{
+        
+            rotate: 0deg;
+        }
+
+input{
+
+    display: none;
+
 }
