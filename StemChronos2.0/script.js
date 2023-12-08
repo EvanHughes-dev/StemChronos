@@ -232,7 +232,7 @@ function AddNewElement(table, PeriodName, PeriodTime, currentPeriod) {
 					var StartTime_AmPm ="AM";
 					var EndTime_AmPm = "AM";
 					if (startHour >= 12) {
-						SstartTime_AmPm = "PM"
+						StartTime_AmPm = "PM"
 						if (startHour >= 13) {
 							startHour -= 12;
 						}
