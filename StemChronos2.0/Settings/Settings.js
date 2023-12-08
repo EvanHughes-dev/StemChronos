@@ -143,6 +143,10 @@ function SetCustomNameText() {//called from Initial() && ClearCustomNames()
 
 function BackToSchedule() {//called from AddEventListeners()
 
+	if(localStorage.getItem("Year")==null){
+		alert("Ensure you select a grade level")
+		return
+	}
 	window.location = "../index.html";
 
 }
