@@ -343,7 +343,7 @@ function FetchMessageData() {
 	db.collection("Schedule").doc("DailyMessage").get().then(docSnap => {
 		if (docSnap.exists) {
 
-			if(docSnap.data()[0]!=null){
+			if (docSnap.data()[DaysOfWeekFull[DayOfWeek]]!=null){
 				SetDailyMessage(docSnap.data())
 			}
 			
