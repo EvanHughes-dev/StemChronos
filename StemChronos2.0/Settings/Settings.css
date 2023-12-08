@@ -42,19 +42,12 @@ option:hover {
 }
 
 option{
+    
     color:black;
 }
 .InputField{
     padding-top:2px;
  }
-
-.ErrorBox{
-    width:90%;
-    margin-left:5%;
-    display:block;
-    background:red;
-    z-index:20;
-}
 
 
 .ToggleArrowHide{
