@@ -138,3 +138,19 @@ body {
     .ReportBtn:hover {
         cursor: pointer;
     }
+
+.RecText{
+   font-size:8px;
+}
+
+.BellIcon {
+  
+    color: #6f7273;
+    width: 50%;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.BellIcon:hover {
+    cursor: pointer;
+}

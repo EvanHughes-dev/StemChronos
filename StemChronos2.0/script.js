@@ -39,7 +39,7 @@ function GetData() {
 	if (userYear == null) {
 		window.location = "./Welcome/Welcome.html";
 	}
-
+	
 	SetDateAndTime();
 	if (DayOfWeek == 0 || DayOfWeek == 6) {
 		DailyMessageHEADER.innerHTML = "Enjoy your " + DaysOfWeekFull[DayOfWeek];
@@ -110,6 +110,11 @@ async function SetSchedule(Schedule) {
 				var endMinute = PeriodTimes[i].slice(9, 11);
 				var startMinute = PeriodTimes[i].slice(3, 5);
 				var PeriodName = PeriodNames[i];
+
+				if (i + 1 == PeriodNames.length) {
+					lastHour = endHour;
+					lastMinute=endMinute
+				}
 				if (i == 0) {
 
 					firstHour = startHour;

@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\StemChronos2.0",
-    "\\StemChronos2.0\\Welcome"
+    "\\StemChronos2.0\\BootStrap",
+    "\\StemChronos2.0\\Images",
+    "\\StemChronos2.0\\Settings"
   ],
-  "SelectedNode": "\\StemChronos2.0\\manifest.json",
   "PreviewInSolutionExplorer": false
 }

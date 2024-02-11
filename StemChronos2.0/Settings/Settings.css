@@ -46,13 +46,16 @@ option{
 }
 
 .InputField{
- 
+   padding-top:4px;
 }
 
-.ErrorBox{
-    width:90%;
-    margin-left:5%;
-    display:block;
-    background:red;
-    z-index:20;
+.SettingText{
+    font-size:12px;
+    padding-left:2px;
+    padding-right:2px;
+}
+
+.footerOBJ{
+    padding-bottom:5px;
+    padding-top:5px;
 }
