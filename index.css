@@ -86,7 +86,7 @@ font-size: 30px;
 }
 .LetterDay {
     margin-top: 5px;
-    width: 90px;
+    width: 150px;
     height: 70%;
     margin-left: 5px;
     align-content: center;
@@ -163,10 +163,6 @@ br{
     .ReportBtn:hover {
         cursor: pointer;
     }
-
-
-
-
 
     .TimeLeft{
         margin: 2px;
