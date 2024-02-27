@@ -49,7 +49,9 @@ option{
     padding-top:2px;
  }
 
-
+.InputFieldTitle{
+    font-size: 40px;
+}
 .ToggleArrowHide{
     font-size: 20px;
     padding-left: 3px;
