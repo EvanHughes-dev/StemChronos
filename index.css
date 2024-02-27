@@ -4,7 +4,7 @@ body {
     background-color: #Eeeef3;
    
     font-size: 15px;
-    aspect-ratio: 16/9;
+ 
 }
 .title-row {
 	width: 100%;
@@ -40,7 +40,7 @@ body {
 }
 
 tr{
-font-size: 30px;
+font-size: 28px;
 }
 .CurrentPeriod {
     background-color: #92cbdf;
@@ -64,8 +64,8 @@ font-size: 30px;
 
 
     .DailyMessage {
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
         justify-content: center;
         align-items: center;
         background-color: whitesmoke;
@@ -77,17 +77,18 @@ font-size: 30px;
 .DailyMessageText {
     margin-top: 10px;
     text-align: center;
+	font-size:40px
 }
 
 .DailyMessageHeader {
     margin-top:5px;
     text-align: center;
-    font-size:30px;
+    font-size:50px;
 }
 .LetterDay {
     margin-top: 5px;
-    width: 250px;
-    height: 70%;
+    width: 300px;
+    height: 150px;
     margin-left: 5px;
     align-content: center;
     vertical-align: central;
@@ -98,7 +99,7 @@ font-size: 30px;
     align-content: center;
     vertical-align: central;
     padding: 5px 5px 5px 5px;
-	font-size:50px;
+	font-size:43px;
 }
 
 
