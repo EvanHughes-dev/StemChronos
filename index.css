@@ -4,6 +4,7 @@ body {
     background-color: #Eeeef3;
    
     font-size: 15px;
+    aspect-ratio: 16/9;
 }
 .title-row {
 	width: 100%;

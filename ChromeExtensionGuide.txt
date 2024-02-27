@@ -5,3 +5,4 @@ Welcome to my guide to everything Chrome extensions
 The way Chrome extensions review codes blocks certain conventions that are normal
 for HTML, JavaScript, and CSS
 
+
