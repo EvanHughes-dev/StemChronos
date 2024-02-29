@@ -30,6 +30,9 @@ select.DropDown {
     width: 70%;
 }
 
+input{
+    width:30%;
+}
 
 option:hover {
     background-color: #92cbdf;
