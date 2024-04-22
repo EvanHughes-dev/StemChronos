@@ -8,15 +8,7 @@
  */
 
 
-// Import the functions you need from the SDKs you need
 
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const d = new Date();
 const DayOfWeek = d.getDay();
 
@@ -64,14 +56,6 @@ function GetData() {
 		WeekendImageOBJ.style.display = 'revert';
 		
     }
-
-
-	
-	
-
-	
-	
-	
 
 	//const docRef = firebase.doc();
 	db.collection("Schedule").doc(userYear.toString()).get().then(docSnap => {
