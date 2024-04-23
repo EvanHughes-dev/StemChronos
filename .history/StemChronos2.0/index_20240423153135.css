@@ -1,0 +1,169 @@
+body {
+    width: 300px;
+  
+    background-color: #Eeeef3;
+   
+    font-size: 15px;
+}
+.title-row {
+	width: 100%;
+	
+	font-size: 17px;
+	padding: 10px;
+    height: 60px;
+    margin-bottom: 1px;
+    background-color: #020141;
+    border-bottom: solid;
+    border-bottom-color: #EDC02D;
+    border-radius: 0px 0px 7px 7px;
+}
+
+.title {
+	float: left;
+	color: white;
+	margin: 6.5px 0;
+	font-weight: 700;
+}
+
+.currentTime {
+	float: right;
+	font-size: 15px;
+    color: whitesmoke;
+}
+
+.date {
+	float: right;
+	font-size: 12px;
+	clear: right;
+    color: whitesmoke;
+}
+
+tr{
+font-size: 12px;
+}
+.CurrentPeriod {
+    background-color: #92cbdf;
+}
+
+.CurrentPeriod:hover {
+    background-color: #51abcb;
+}
+
+.TimeRemainingHolder {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.DailyMessageText{
+    text-align:center;
+}
+   
+
+
+    .DailyMessage {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+        /* border-bottom: solid 1px gray;
+        border-left: solid 1px gray;
+        border-radius: 0px 0px 0px 7px; */
+        display: block;
+    }
+.DailyMessageText {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.DailyMessageHeader {
+    margin-top:5px;
+    text-align: center;
+    font-size:20px;
+}
+.LetterDay {
+    margin-top: 5px;
+    width: 75px;
+    height: 50%;
+    margin-left: 5px;
+    align-content: center;
+    vertical-align: central;
+    background-color: lightgray;
+}
+.LetterDayInside {
+    align-content: center;
+    vertical-align: central;
+    padding: 5px 5px 5px 5px;
+}
+
+.navy {
+    background-color: #020141;
+}
+
+
+
+.flex-child {
+    flex: 1;
+    
+    padding-right:5px;
+    padding-left:5px;
+}
+
+    .flex-child:first-child {
+        
+        flex: 0;
+        
+        width: 100%;
+        height: 100%;
+       
+       
+    } 
+
+#FooterTable{
+    padding-top: 0px;
+    width:100%;
+    height: 10px;
+    
+}
+
+    #FooterTable th{
+        width:50%;
+        height:10px;
+        
+    }
+
+br{
+
+    margin:0px;
+}
+.SettingBtn {
+    color: #6f7273;
+    width: 50%;
+    text-decoration: none;
+    font-size: 25px;
+}
+.SettingBtn:hover{
+     cursor: pointer;
+     
+}
+
+.ReportBtn {
+    color: #6f7273;
+    width: 50%;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+    .ReportBtn:hover {
+        cursor: pointer;
+    }
+
+
+
+
+
+    .TimeLeft{
+        margin: 2px;
+    }
