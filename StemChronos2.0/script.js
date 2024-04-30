@@ -90,17 +90,17 @@ async function SetSchedule(Schedule) {
 
   var currentData;
   switch (DayOfWeek) {
-    case 2:
+    case 1:
       currentData = Schedule.Monday;
       break;
-    case 3:
+    case 2:
       currentData = Schedule.Tuesday;
-    case 4:
+    case 3:
       currentData = Schedule.Wednesday;
       break;
-    case 5:
+    case 4:
       currentData = Schedule.Thursday;
-    case 6:
+    case 5:
       currentData = Schedule.Friday;
   }
   let hour = d.getHours();
